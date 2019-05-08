@@ -46,3 +46,9 @@ public class SpringSecurityApplication {
         return connector;
     }
 }
+
+/*
+this is command to create ssl self assigned certificate:-
+
+keytool -genkeypair -alias bootsecurity -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore bootsecurity.p12 -validity 3650
+*/

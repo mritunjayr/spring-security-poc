@@ -5,6 +5,7 @@
     <groupId>com.ibm</groupId>
     <artifactId>spring-securtiy-poc</artifactId>
     <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOTS</version>
 
     <modules>
         <module>basic-authentication/spring-app</module>

@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { map } from "rxjs/operators";
+import { Router } from "@angular/router";
 export class User {
   staus: String;
 }
@@ -8,33 +9,28 @@ export class User {
   providedIn: "root"
 })
 export class AuthenticationService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
   authenticate(username, password) {
-    const headers = new HttpHeaders({
-      Authorization: "Basic " + btoa(username + ":" + password)
-    }).set("Content-Type", "text/plain;charset=UTF-8");
-    console.log(headers);
     return this.httpClient
-      .get<User>("http://localhost:8080/employee", {
-        headers,
-        responseType: "json"
-      })
-      .pipe(userData => {
+      .post<any>("http://localhost:8080/authenticate", { username, password })
+      .subscribe(userData => {
         sessionStorage.setItem("username", username);
-        let authString = "Basic " + btoa(username + ":" + password);
-        sessionStorage.setItem("basicauth", authString);
+        let tokenStr = "Bearer " + userData.token;
+        sessionStorage.setItem("token", tokenStr);
+        this.router.navigate([""]);
         return userData;
       });
   }
 
   isUserLoggedIn() {
     let user = sessionStorage.getItem("username");
-    console.log(!(user === null));
+    // console.log(!(user === null));
     return !(user === null);
   }
 
   logOut() {
     sessionStorage.removeItem("username");
+    sessionStorage.removeItem("token");
   }
 }

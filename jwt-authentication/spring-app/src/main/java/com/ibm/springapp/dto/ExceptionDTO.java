@@ -1,4 +1,9 @@
 package com.ibm.springapp.dto;
 
-public class ExceptionDTO {
+import java.io.Serializable;
+
+public class ExceptionDTO implements Serializable {
+
+    private String message;
+
 }

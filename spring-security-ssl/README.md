@@ -5,4 +5,4 @@ This is demo POC for adding ssl certificates to your application to secure each 
 
 this is example command to create ssl self assigned certificate for dev purpose:-
 
-       keytool -genkeypair -alias bootsecurity -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore bootsecurity.p12 -validity 3650
+`keytool -genkeypair -alias bootsecurity -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore bootsecurity.p12 -validity 3650`

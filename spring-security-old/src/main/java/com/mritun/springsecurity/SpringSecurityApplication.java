@@ -1,4 +1,4 @@
-package com.stackroute.springsecurity;
+package com.mritun.springsecurity;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
@@ -18,14 +18,14 @@ public class SpringSecurityApplication {
     }
 
     @Bean
-    public ServletWebServerFactory servletConatainer(){
+    public ServletWebServerFactory servletConatainer() {
         //Enable ssl traffic
-        TomcatServletWebServerFactory tomcat= new TomcatServletWebServerFactory(){
+        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
             @Override
-            public void postProcessContext(Context context){
-                SecurityConstraint securityConstraint=new SecurityConstraint();
+            public void postProcessContext(Context context) {
+                SecurityConstraint securityConstraint = new SecurityConstraint();
                 securityConstraint.setUserConstraint("CONFIDENTIAL");
-                SecurityCollection collection=new SecurityCollection();
+                SecurityCollection collection = new SecurityCollection();
                 collection.addPattern("/**");
                 securityConstraint.addCollection(collection);
                 context.addConstraint(securityConstraint);
@@ -37,8 +37,13 @@ public class SpringSecurityApplication {
         return tomcat;
     }
 
-    private Connector httpToHttpsRedirectConnector(){
-        Connector connector=new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
+    /**
+     * This method is using for redirect all http to https request
+     *
+     * @return
+     */
+    private Connector httpToHttpsRedirectConnector() {
+        Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
         connector.setScheme("http");
         connector.setPort(8082);
         connector.setSecure(true);
@@ -47,8 +52,3 @@ public class SpringSecurityApplication {
     }
 }
 
-/*
-this is command to create ssl self assigned certificate:-
-
-keytool -genkeypair -alias bootsecurity -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore bootsecurity.p12 -validity 3650
-*/

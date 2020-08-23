@@ -1,4 +1,4 @@
-package com.stackroute.springsecurity.model;
+package com.mritun.springsecurity.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;

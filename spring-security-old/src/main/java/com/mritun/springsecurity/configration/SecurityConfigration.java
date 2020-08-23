@@ -1,4 +1,4 @@
-package com.stackroute.springsecurity.configration;
+package com.mritun.springsecurity.configration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +23,7 @@ public class SecurityConfigration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/api/v1//query").authenticated()
+                .antMatchers("/api/v1/query").authenticated()
                 .antMatchers("/api/v1/admin").hasAnyRole("ADMIN")
                 .and().httpBasic();
     }

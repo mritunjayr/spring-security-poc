@@ -1,4 +1,4 @@
-package com.stackroute.springsecurity;
+package com.mritun.springsecurity;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

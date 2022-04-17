@@ -18,4 +18,5 @@ public class EmployeeController {
     public ResponseEntity<?> employee(){
         return new ResponseEntity<StatusDTO>(new StatusDTO("All employee details is accessed"), HttpStatus.OK);
     }
+
 }

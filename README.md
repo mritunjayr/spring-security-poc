@@ -1,6 +1,6 @@
-# spring boot security poc
+## spring boot security poc
 
-Basic
+1.  Using Basic Authentication 
 
-
-JWT
+2.  JWT token based auths
+3.  secure http or, use of https

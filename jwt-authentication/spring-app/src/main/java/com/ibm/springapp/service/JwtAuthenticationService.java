@@ -14,15 +14,16 @@ import java.util.Objects;
 public class JwtAuthenticationService {
 
 
-    private AuthenticationManager authenticationManager;
+
     private UserDetailsService userDetailsService;
     private JwtTokenUtil jwtTokenUtil;
+    private AuthenticationManager authenticationManager;
 
     @Autowired
     public JwtAuthenticationService(AuthenticationManager authenticationManager, UserDetailsService userDetailsService, JwtTokenUtil jwtTokenUtil) {
-        this.authenticationManager = authenticationManager;
         this.userDetailsService = userDetailsService;
         this.jwtTokenUtil = jwtTokenUtil;
+        this.authenticationManager = authenticationManager;
     }
 
     public String authenticate(String username, String password){

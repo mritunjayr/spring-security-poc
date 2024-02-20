@@ -9,10 +9,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
     @Autowired
     private PasswordEncoder encoder;
+
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         if ("ibm".equals(s)) {

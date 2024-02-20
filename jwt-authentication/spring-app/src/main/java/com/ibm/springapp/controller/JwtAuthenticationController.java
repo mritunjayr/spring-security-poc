@@ -8,8 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,16 +28,16 @@ public class JwtAuthenticationController {
 
 
     @PostMapping("/authenticate")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest jwtRequest){
-        String token =null;
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest jwtRequest) {
+        String token = null;
         try {
-            token=jwtAuthenticationService.authenticate(jwtRequest.getUsername(), jwtRequest.getPassword());
+            token = jwtAuthenticationService.authenticate(jwtRequest.getUsername(), jwtRequest.getPassword());
         } catch (
                 DisabledException e) {
             return new ResponseEntity<>("USER_DISABLED" + e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (
                 BadCredentialsException e) {
-            return new ResponseEntity<>("INVALID_CREDENTIALS"+e.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("INVALID_CREDENTIALS" + e.getMessage(), HttpStatus.BAD_REQUEST);
         }
 
 

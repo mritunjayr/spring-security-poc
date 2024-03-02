@@ -23,12 +23,13 @@ public class SecurityConfiguration {
 
     @Bean
     public UserDetailsManager userDetailsManager(PasswordEncoder passwordEncoder) throws Exception {
-        UserDetails userDetails = User.withUsername("admin")
+        // user has admin role
+        UserDetails adminUser = User.withUsername("admin")
                 .password(passwordEncoder.encode("admin123")).roles("ADMIN").build();
+        // a normal user
+        UserDetails user = User.withUsername("ibm").password(passwordEncoder.encode("ibm")).roles("USER").build();
+        return new InMemoryUserDetailsManager(adminUser, user);
 
-        UserDetailsManager userDetailsManager = new InMemoryUserDetailsManager(userDetails);
-        userDetailsManager.createUser(User.withUsername("ibm").password(passwordEncoder.encode("ibm")).roles("USER").build());
-        return userDetailsManager;
     }
 
     @Bean

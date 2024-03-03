@@ -4,7 +4,7 @@ import { LoginComponent } from "./login/login.component";
 import { LogoutComponent } from "./logout/logout.component";
 import { SuccessComponent } from "./success/success.component";
 import { AppComponent } from "./app.component";
-import { AuthGaurdService } from "./service/auth-gaurd.service";
+import { AuthGaurdService } from './service/auth-gaurd.service';
 import { AuthenticationService } from "./service/authentication.service";
 
 const routes: Routes = [
@@ -18,7 +18,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  imports: [RouterModule.forRoot(routes, {})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

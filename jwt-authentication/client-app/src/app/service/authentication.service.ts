@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
 export class User {
-  staus: String;
+  status: string;
 }
 @Injectable({
   providedIn: "root"
@@ -20,13 +20,18 @@ export class AuthenticationService {
         sessionStorage.setItem("token", tokenStr);
         this.router.navigate([""]);
         return userData;
+      },(err) => {
+        console.error('Authentication failed',err);
+        sessionStorage.setItem("username", "failed to authenticate");
+        return true;
       });
+
   }
 
   isUserLoggedIn() {
     let user = sessionStorage.getItem("username");
     // console.log(!(user === null));
-    return !(user === null);
+    return !!user;
   }
 
   logOut() {

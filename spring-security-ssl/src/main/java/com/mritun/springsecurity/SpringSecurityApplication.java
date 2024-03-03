@@ -1,9 +1,6 @@
 package com.mritun.springsecurity;
 
-import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
-import org.apache.tomcat.util.descriptor.web.SecurityCollection;
-import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
@@ -18,22 +15,13 @@ public class SpringSecurityApplication {
     }
 
     @Bean
-    public ServletWebServerFactory servletConatainer() {
+    public ServletWebServerFactory servletContainer() {
         //Enable ssl traffic
-        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
-            @Override
-            public void postProcessContext(Context context) {
-                SecurityConstraint securityConstraint = new SecurityConstraint();
-                securityConstraint.setUserConstraint("CONFIDENTIAL");
-                SecurityCollection collection = new SecurityCollection();
-                collection.addPattern("/**");
-                securityConstraint.addCollection(collection);
-                context.addConstraint(securityConstraint);
+        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
 
-            }
-        };
         //add HTTP to HTTPS redirect
         tomcat.addAdditionalTomcatConnectors(httpToHttpsRedirectConnector());
+
         return tomcat;
     }
 

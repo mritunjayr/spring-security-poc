@@ -28,6 +28,8 @@ export class LoginComponent implements OnInit {
       console.log(this.invalidLogin);
       this.router.navigate([""]);
       this.invalidLogin = false;
-    } else this.invalidLogin = true;
+    } else {
+      this.invalidLogin = true;
+    }
   }
 }
